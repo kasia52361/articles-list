@@ -1,20 +1,16 @@
-# Schibsted frontend task app
+# Articles List App
 
-This is a very basic npm project with default webpack setup.
+A frontend application that will display list of article previews.
 
-You should use this project as a base for your solution.
-Feel free to modify/extend this with whatever you need.
+## Tech
 
-In case you need some assistance take a look at official webpack docs:
- - [Guides](https://webpack.js.org/guides/) 
- - [Concepts](https://webpack.js.org/concepts/)
-
-Eventually this application will request live data from a real API.
-
-You can find the full description of your assignment in [ASSIGNMENT.md](ASSIGNMENT.md)
+- Webpack
+- React
+- styled components
+- Typescript
 
 ## API Documentation
-Api server can be found in `server.js` file. You should not modify this file, only use it.
+Api server can be found in `server.js` file. 
 
 To run the server do:
 > `$ node server.js`
@@ -26,5 +22,3 @@ The server has 2 endpoints:
 `/articles/sports` - returns a list of articles from `sport` category
 
 `/articles/fashion` - returns a list of articles from `fashion` category
-
-Be aware of backend errors!
