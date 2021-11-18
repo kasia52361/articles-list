@@ -43,15 +43,15 @@ const App: React.FC = () => {
         }
     };
     return (
-        <div>
-            <div>
-                <div>
+        <div className="container">
+            <div className="row">
+                <div className="w-1/2 md:w-auto">
                     <Filters handleCheckbox={handleCheckbox} />
                 </div>
-                <div>
+                <div className="w-1/2 md:w-full md:order-first">
                     <Sort />
                 </div>
-                <div>
+                <div className="w-full md:flex-1">
                     <ArticlesList articles={articlesList} />
                 </div>
             </div>

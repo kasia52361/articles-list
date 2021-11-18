@@ -8,6 +8,7 @@ A frontend application that will display list of article previews.
 - React
 - styled components
 - Typescript
+- TailwindCSS
 
 ## API Documentation
 Api server can be found in `server.js` file. 

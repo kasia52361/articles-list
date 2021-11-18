@@ -15,8 +15,8 @@ const Article: React.FC<Props> = ({ article }: Props) => {
 
     return (
         <SingleArticle>
-            {category}
             <div className="imgcontainer">
+                <div className="tag">{category}</div>
                 <img
                     className="img"
                     src={`${
@@ -28,11 +28,14 @@ const Article: React.FC<Props> = ({ article }: Props) => {
                 />
             </div>
             <div className="content">
-                <div className="flex">
-                    <h2 className="title">{title}</h2>
-                    <div>{date}</div>
+                <div className="row">
+                    <div className="w-full flex-1">
+                        <h2 className="text-xl md:text-3xl">{title}</h2>
+                    </div>
+
+                    <div className="w-full md:w-auto pt-1">{date}</div>
                 </div>
-                <div>{preamble}</div>
+                <div className="hidden md:block mt-2">{preamble}</div>
             </div>
         </SingleArticle>
     );

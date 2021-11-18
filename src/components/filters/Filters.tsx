@@ -9,8 +9,8 @@ type Props = {
 
 const Filters: React.FC<Props> = ({ handleCheckbox }: Props) => {
     return (
-        <div>
-            <h2>Data sources</h2>
+        <>
+            <h2 className="text-lg md:text-2xl mb-3">Data sources</h2>
             <Checkbox
                 label="Fashion"
                 type="fashion"
@@ -21,7 +21,7 @@ const Filters: React.FC<Props> = ({ handleCheckbox }: Props) => {
                 type="sport"
                 handleCheckbox={handleCheckbox}
             />
-        </div>
+        </>
     );
 };
 
