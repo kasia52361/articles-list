@@ -15,12 +15,11 @@ const Button = styled.button`
         width: 0;
         height: 0;
         border-style: solid;
-        border-width: ${({ direction }) =>
-            direction === 'down' ? '15px 7.5px 0 7.5px' : '0 7.5px 15px 7.5px'};
-        border-color: ${({ direction }) =>
-            direction === 'down'
-                ? 'black transparent transparent transparent'
-                : 'transparent transparent black transparent'};
+        border-width: 15px 7.5px 0 7.5px;
+        border-color: black transparent transparent transparent;
+        ${({ direction }) =>
+            direction === 'up' && `transform: rotateX(180deg);`}
+        ${({ active }) => active && `border-top-color: gray; `}
     }
 `;
 

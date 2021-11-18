@@ -24,3 +24,11 @@ export const formatArticleDate = (date: string): string => {
 
     return formattedDate;
 };
+
+export const sortBy = (a, b, direction) => {
+    if (direction === 'down') {
+        return +new Date(formatDate(b.date)) - +new Date(formatDate(a.date));
+    } else {
+        return +new Date(formatDate(a.date)) - +new Date(formatDate(b.date));
+    }
+};
