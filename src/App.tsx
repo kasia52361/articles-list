@@ -8,6 +8,9 @@ import ArticlesList from './components/articles-list/ArticlesList';
 // types
 import { IArticle } from './types';
 
+// config
+import { api } from './config';
+
 // styles
 import './App.css';
 
@@ -19,7 +22,7 @@ const App: React.FC = () => {
         checked: boolean
     ): void => {
         if (checked) {
-            fetch(`${process.env.API_HOST}/articles/${label.toLowerCase()}`)
+            fetch(`${api}/${label.toLowerCase()}`)
                 .then((response) => {
                     if (response.ok) {
                         return response.json();

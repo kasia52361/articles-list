@@ -3,6 +3,9 @@ import React from 'react';
 // types
 import { IArticle } from '../../../../types';
 
+// helpers
+import { formatArticleDate } from '../../../../helpers';
+
 // styles
 import SingleArticle from './styles';
 
@@ -33,7 +36,9 @@ const Article: React.FC<Props> = ({ article }: Props) => {
                         <h2 className="text-xl md:text-3xl">{title}</h2>
                     </div>
 
-                    <div className="w-full md:w-auto pt-1">{date}</div>
+                    <div className="w-full md:w-auto pt-1">
+                        {formatArticleDate(date)}
+                    </div>
                 </div>
                 <div className="hidden md:block mt-2">{preamble}</div>
             </div>
