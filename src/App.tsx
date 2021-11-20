@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Filters from './components/filters/Filters';
 import Sort from './components/sort/Sort';
 import ArticlesList from './components/articles-list/ArticlesList';
+import ErrorMessage from './components/error-message/ErrorMessage';
 
 // types
 import { IArticle } from './types';
@@ -12,36 +13,36 @@ import { IArticle } from './types';
 import { api } from './config';
 
 // helpers
-import { sortBy } from './helpers';
+import { sortBy, getUrl } from './helpers';
 
 // styles
 import './App.css';
 
 const App: React.FC = () => {
     const [articlesList, setArticlesList] = useState<IArticle[]>([]);
-    const [activeDirection, setActiveDirection] = useState<string>('');
+    const [activeDirection, setActiveDirection] = useState<'DESC' | 'ASC'>(
+        null
+    );
+    const [error, setError] = useState<string>('');
+
     const handleCheckbox = (
         label: string,
         type: string,
         checked: boolean
     ): void => {
         if (checked) {
-            fetch(`${api}/${label.toLowerCase()}`)
-                .then((response) => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    return Promise.reject(response);
-                })
-                .then((data) => {
+            (async () => {
+                const response = await getUrl(`${api}/${label.toLowerCase()}`);
+
+                response.error ? setError(`${response.error}`) : setError('');
+
+                if (response.ok) {
                     setArticlesList((prevState) => [
                         ...prevState,
-                        ...data.articles,
+                        ...response.data.articles,
                     ]);
-                })
-                .catch((error) => {
-                    console.log('Something went wrong.', error);
-                });
+                }
+            })();
         } else {
             const filteredArr = articlesList.filter((article) => {
                 return article.category !== type;
@@ -50,7 +51,7 @@ const App: React.FC = () => {
         }
     };
 
-    const handleSort = (direction: string): void => {
+    const handleSort = (direction: 'DESC' | 'ASC'): void => {
         if (articlesList.length) {
             const sorted = [...articlesList].sort((a, b) =>
                 sortBy(a, b, direction)
@@ -62,16 +63,17 @@ const App: React.FC = () => {
     return (
         <div className="container">
             <div className="row">
-                <div className="w-1/2 md:w-auto">
+                <div className="w-auto flex-1 md:flex-initial">
                     <Filters handleCheckbox={handleCheckbox} />
                 </div>
-                <div className="w-1/2 md:w-full md:order-first">
+                <div className="w-auto md:w-full md:order-first">
                     <Sort
                         handleSort={handleSort}
                         activeDirection={activeDirection}
                     />
                 </div>
                 <div className="w-full md:flex-1">
+                    {error && <ErrorMessage text={error} />}
                     <ArticlesList articles={articlesList} />
                 </div>
             </div>

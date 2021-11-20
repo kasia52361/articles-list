@@ -33,10 +33,10 @@ const Article: React.FC<Props> = ({ article }: Props) => {
             <div className="content">
                 <div className="row">
                     <div className="w-full flex-1">
-                        <h2 className="text-xl md:text-3xl">{title}</h2>
+                        <h2 className="text-base lg:text-3xl">{title}</h2>
                     </div>
 
-                    <div className="w-full md:w-auto pt-1">
+                    <div className="w-full md:w-auto pt-1 text-sm">
                         {formatArticleDate(date)}
                     </div>
                 </div>

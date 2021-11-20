@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const CheckboxInput = styled.div`
     position: relative;
     margin-bottom: 15px;
+    margin-right: 10px;
 
     > .input {
         position: absolute;

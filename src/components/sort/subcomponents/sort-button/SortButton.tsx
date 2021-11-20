@@ -3,9 +3,9 @@ import React from 'react';
 import Button from './styles';
 
 type Props = {
-    direction: string;
-    handleSort: (direction: string) => void;
-    activeDirection: string;
+    direction: 'DESC' | 'ASC';
+    handleSort: (direction: 'DESC' | 'ASC') => void;
+    activeDirection: 'DESC' | 'ASC';
 };
 
 const SortButton: React.FC<Props> = ({

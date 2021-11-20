@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Button = styled.button`
     appearance: none;
@@ -18,7 +18,7 @@ const Button = styled.button`
         border-width: 15px 7.5px 0 7.5px;
         border-color: black transparent transparent transparent;
         ${({ direction }) =>
-            direction === 'up' && `transform: rotateX(180deg);`}
+            direction === 'ASC' && `transform: rotateX(180deg);`}
         ${({ active }) => active && `border-top-color: gray; `}
     }
 `;

@@ -25,10 +25,26 @@ export const formatArticleDate = (date: string): string => {
     return formattedDate;
 };
 
-export const sortBy = (a, b, direction) => {
-    if (direction === 'down') {
+export const sortBy = (a, b, direction: 'DESC' | 'ASC') => {
+    if (direction === 'DESC') {
         return +new Date(formatDate(b.date)) - +new Date(formatDate(a.date));
     } else {
         return +new Date(formatDate(a.date)) - +new Date(formatDate(b.date));
     }
+};
+
+export const getUrl = async (url: string) => {
+    let ok, data, error: string;
+    try {
+        const res = await fetch(url);
+        ok = res.ok;
+        if (res.status !== 200) {
+            error = `An error has occured: ${res.status}`;
+        }
+        data = await res.json();
+    } catch (err) {
+        error = err;
+    }
+
+    return { ok, data, error };
 };

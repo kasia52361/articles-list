@@ -6,11 +6,14 @@ const SingleArticle = styled.div`
     margin-bottom: 20px;
 
     > .imgcontainer {
-        width: 300px;
-        padding-top: 20%;
+        width: 120px;
+        height: 72px;
         position: relative;
         background: lightgray;
-        max-width: 35%;
+        @media (min-width: 1024px) {
+            width: 300px;
+            height: 180px;
+        }
 
         > .img {
             position: absolute;

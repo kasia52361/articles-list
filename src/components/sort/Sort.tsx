@@ -3,8 +3,8 @@ import React from 'react';
 import SortButton from './subcomponents/sort-button/SortButton';
 
 type Props = {
-    handleSort: (direction: string) => void;
-    activeDirection: string;
+    handleSort: (direction: 'DESC' | 'ASC') => void;
+    activeDirection: 'DESC' | 'ASC';
 };
 
 const Sort: React.FC<Props> = ({ handleSort, activeDirection }: Props) => {
@@ -14,12 +14,12 @@ const Sort: React.FC<Props> = ({ handleSort, activeDirection }: Props) => {
 
             <div>
                 <SortButton
-                    direction="up"
+                    direction="ASC"
                     handleSort={handleSort}
                     activeDirection={activeDirection}
                 />
                 <SortButton
-                    direction="down"
+                    direction="DESC"
                     handleSort={handleSort}
                     activeDirection={activeDirection}
                 />
