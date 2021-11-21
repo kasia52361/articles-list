@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Filters from './components/filters/Filters';
 import Sort from './components/sort/Sort';
 import ArticlesList from './components/articles-list/ArticlesList';
-import ErrorMessage from './components/error-message/ErrorMessage';
+import Message from './components/message/Message';
 import Loader from './components/loader/Loader';
 
 // types
@@ -66,9 +66,11 @@ const App: React.FC = () => {
                 sortBy(a, b, direction)
             );
             setArticlesList(sorted);
-            setActiveDirection(direction);
         }
+
+        setActiveDirection(direction);
     };
+
     return (
         <div className="container">
             <div className="row">
@@ -83,8 +85,14 @@ const App: React.FC = () => {
                 </div>
                 <div className="w-full md:flex-1">
                     {isLoading && <Loader />}
-                    {error && <ErrorMessage text={error} />}
-                    <ArticlesList articles={articlesList} />
+                    {error && <Message text={error} type="error" />}
+                    {articlesList.length > 0 && (
+                        <ArticlesList articles={articlesList} />
+                    )}
+
+                    {!articlesList.length && !error && (
+                        <Message text="Please select data source" />
+                    )}
                 </div>
             </div>
         </div>

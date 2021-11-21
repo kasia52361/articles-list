@@ -40,7 +40,7 @@ const CheckboxInput = styled.div`
             width: 8px;
             height: 4px;
             left: 3px;
-            top: 6px;
+            top: 7px;
             border-bottom: 1px solid black;
             border-left: 1px solid black;
             transform: rotate(-45deg);

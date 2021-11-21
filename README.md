@@ -2,6 +2,14 @@
 
 A frontend application that will display list of article previews.
 
+Run locally:
+> `$ npm install`
+
+> `$ npm run dev`
+
+Build bundle:
+> `$ npm run build`
+
 ## Tech
 
 - Webpack
@@ -23,3 +31,8 @@ The server has 2 endpoints:
 `/articles/sports` - returns a list of articles from `sport` category
 
 `/articles/fashion` - returns a list of articles from `fashion` category
+
+## Possible ways of improvement
+- check out tailwind-styled-components for better work with TailwindCSS
+- consider using line clamp to truncate longer descriptions in articles previews
+- consider extending more commonly used components (like Message or Loader) to other folder
