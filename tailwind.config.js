@@ -1,5 +1,5 @@
 module.exports = {
-    purge: ['./src/*.html', './src/**/*.tsx'],
+    purge: ['./src/**/*.{ts,tsx}'],
     important: true,
     theme: {
         container: {

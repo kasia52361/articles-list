@@ -6,3 +6,5 @@ export interface IArticle {
     title: string;
     preamble: string;
 }
+
+export type SortingTypes = 'DESC' | 'ASC';

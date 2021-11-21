@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // components
 import Filters from './components/filters/Filters';
@@ -7,7 +7,7 @@ import ArticlesList from './components/articles-list/ArticlesList';
 import ErrorMessage from './components/error-message/ErrorMessage';
 
 // types
-import { IArticle } from './types';
+import { IArticle, SortingTypes } from './types';
 
 // config
 import { api } from './config';
@@ -20,10 +20,13 @@ import './App.css';
 
 const App: React.FC = () => {
     const [articlesList, setArticlesList] = useState<IArticle[]>([]);
-    const [activeDirection, setActiveDirection] = useState<'DESC' | 'ASC'>(
-        null
-    );
+    const [activeDirection, setActiveDirection] = useState<SortingTypes>(null);
     const [error, setError] = useState<string>('');
+    const [refreshSort, setRefreshSort] = useState<boolean>(false);
+
+    useEffect(() => {
+        handleSort(activeDirection);
+    }, [refreshSort]);
 
     const handleCheckbox = (
         label: string,
@@ -42,6 +45,9 @@ const App: React.FC = () => {
                         ...response.data.articles,
                     ]);
                 }
+                if (activeDirection) {
+                    setRefreshSort(!refreshSort);
+                }
             })();
         } else {
             const filteredArr = articlesList.filter((article) => {
@@ -51,7 +57,7 @@ const App: React.FC = () => {
         }
     };
 
-    const handleSort = (direction: 'DESC' | 'ASC'): void => {
+    const handleSort = (direction: SortingTypes): void => {
         if (articlesList.length) {
             const sorted = [...articlesList].sort((a, b) =>
                 sortBy(a, b, direction)

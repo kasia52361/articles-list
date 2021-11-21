@@ -1,10 +1,14 @@
 import React from 'react';
 
+// components
 import SortButton from './subcomponents/sort-button/SortButton';
 
+// types
+import { SortingTypes } from '../../types';
+
 type Props = {
-    handleSort: (direction: 'DESC' | 'ASC') => void;
-    activeDirection: 'DESC' | 'ASC';
+    handleSort: (direction: SortingTypes) => void;
+    activeDirection: SortingTypes;
 };
 
 const Sort: React.FC<Props> = ({ handleSort, activeDirection }: Props) => {
