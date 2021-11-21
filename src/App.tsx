@@ -5,6 +5,7 @@ import Filters from './components/filters/Filters';
 import Sort from './components/sort/Sort';
 import ArticlesList from './components/articles-list/ArticlesList';
 import ErrorMessage from './components/error-message/ErrorMessage';
+import Loader from './components/loader/Loader';
 
 // types
 import { IArticle, SortingTypes } from './types';
@@ -22,6 +23,7 @@ const App: React.FC = () => {
     const [articlesList, setArticlesList] = useState<IArticle[]>([]);
     const [activeDirection, setActiveDirection] = useState<SortingTypes>(null);
     const [error, setError] = useState<string>('');
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [refreshSort, setRefreshSort] = useState<boolean>(false);
 
     useEffect(() => {
@@ -34,10 +36,12 @@ const App: React.FC = () => {
         checked: boolean
     ): void => {
         if (checked) {
+            setIsLoading(true);
             (async () => {
                 const response = await getUrl(`${api}/${label.toLowerCase()}`);
 
                 response.error ? setError(`${response.error}`) : setError('');
+                response && setIsLoading(false);
 
                 if (response.ok) {
                     setArticlesList((prevState) => [
@@ -45,9 +49,8 @@ const App: React.FC = () => {
                         ...response.data.articles,
                     ]);
                 }
-                if (activeDirection) {
-                    setRefreshSort(!refreshSort);
-                }
+
+                activeDirection && setRefreshSort(!refreshSort);
             })();
         } else {
             const filteredArr = articlesList.filter((article) => {
@@ -79,6 +82,7 @@ const App: React.FC = () => {
                     />
                 </div>
                 <div className="w-full md:flex-1">
+                    {isLoading && <Loader />}
                     {error && <ErrorMessage text={error} />}
                     <ArticlesList articles={articlesList} />
                 </div>
